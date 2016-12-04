@@ -21,7 +21,6 @@
     mount.parentNode.replaceChild(link, mount);
     link.parentNode.appendChild(el('div', [ form, message ]));
 
-
     /**
      * @param object
      * @param attrs
@@ -72,6 +71,8 @@
 
         var new_username = form.new_user_login.value;
         var current_username = usernameInput.value;
+
+        // do nothing if username is very short or unchanged
         if( new_username.length < 2 || new_username === current_username ) {
             return;
         }
@@ -81,21 +82,29 @@
         request.open('POST', opts.ajaxurl + "?action=change_username", true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         request.onload = function() {
+            var errored = true;
             if (request.status >= 200 && request.status < 400 && request.responseText != -1 ) {
-                var data = JSON.parse(request.responseText);
+                try {
+                    var data = JSON.parse(request.responseText);
 
-                // update nonce
-                opts.nonce = data.new_nonce;
+                    // we're good.
+                    errored = false;
 
-                // show response message
-                message.style.color = data.success ? 'green' : 'red';
-                message.innerHTML = data.message;
+                    // update nonce
+                    opts.nonce = data.new_nonce;
 
-                if( data.success ) {
-                    usernameInput.value = new_username;
-                    toggle();
-                }
-            } else {
+                    // show response message
+                    message.style.color = data.success ? 'green' : 'red';
+                    message.innerHTML = data.message;
+
+                    if( data.success ) {
+                        usernameInput.value = new_username;
+                        toggle();
+                    }
+                } catch(e) {}
+            }
+
+            if(errored) {
                 message.style.color = 'red';
                 message.textContent = "Uh oh, something went wrong submitting the form.";
             }
@@ -110,7 +119,12 @@
          if(e.keyCode == 27 ) { toggle(); }
     }
 
-    function toggle() {
+    // toggle between link / form
+    function toggle(e) {
+        if(e) {
+            e.preventDefault();
+        }
+
         if( form.style.display === 'none' ) {
             form.style.display = '';
             link.style.display = 'none';

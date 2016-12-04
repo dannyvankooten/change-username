@@ -2,6 +2,9 @@
 
 namespace change_username;
 
+/**
+ * Enqueue assets on the "user edit" page for user swith the `edit_users` capability.
+ */
 function enqueue_assets() {
     global $pagenow;
 
@@ -20,6 +23,9 @@ function enqueue_assets() {
     ));
 }
 
+/**
+ * Handles the AJAX request for changing a username.
+ */
 function ajax_handler() {
     $response = array(
         'success' => false,
@@ -27,22 +33,43 @@ function ajax_handler() {
     );
 
     // check caps
-    if( ! current_user_can( 'edit_users' ) || empty( $_POST['new_username'] ) ) {
-        $response['message'] = 'You do not have permissions to that.';
+    if( ! current_user_can( 'edit_users' ) ) {
+        $response['message'] = 'You do not have the required capability to do that.';
         wp_send_json($response);
     }
 
     // validate nonce
     check_ajax_referer( 'change_username' );
 
+    // validate request
+    if( empty( $_POST['new_username'] ) || $_POST['old_username'] ) {
+        $response['message'] = 'Invalid request.';
+        wp_send_json($response);
+    }
+
+    // validate new username
+    $new_username = trim( strip_tags( $_POST['new_username'] ) );
+    if( ! validate_username( $new_username ) ) {
+        $response['message'] = __( 'This username is invalid because it uses illegal characters. Please enter a valid username.' );
+        wp_send_json($response);
+    }
+
+    // check if username is not in list of illegal logins
+    /** This filter is documented in wp-includes/user.php */
+    $illegal_user_logins = array_map( 'strtolower', (array) apply_filters( 'illegal_user_logins', array() ) );
+    if ( in_array( $new_username, $illegal_user_logins ) ) {
+        $response['message'] =  __( 'Sorry, that username is not allowed.' );
+        wp_send_json($response);
+    }
+
     // check if new username is in use already
-    $new_username = sanitize_user( $_POST['new_username'], true );
-    $old_username = $_POST['current_username'];
     if( username_exists( $new_username ) ) {
         $response['message'] = sprintf( '<strong>%s</strong> is already in use.', $new_username );
         wp_send_json($response);
     }
 
+    // change the username
+    $old_username = trim( strip_tags( $_POST['current_username'] ) );
     change_username( $old_username, $new_username );
 
     // success response

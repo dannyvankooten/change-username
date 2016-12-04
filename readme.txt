@@ -19,8 +19,6 @@ We found that existing plugins to change a username did not scale at all when a 
 
 This plugin requires PHP version 5.3 or later.
 
-
-
 == Installation ==
 
 #### Installing the plugin
@@ -34,15 +32,14 @@ This plugin requires PHP version 5.3 or later.
 
 Change Username does not come with its own settings page. You can change the username of any of your users simply by editing that user.
 
-
 #### Can users change their own username?
 
 Not right now. Only administrators with the `edit_users` capability can change usernames.
 
-
 #### I've activated the plugin but nothing happens.
 
-Please check if your server runs PHP 5.3, without it the plugin will not do anything.
+Please check if your server is running PHP version 5.3 or later. The plugin will not do anything if you're on an older version of PHP.
+
 
 
 == Screenshots ==
