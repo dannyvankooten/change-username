@@ -1,11 +1,15 @@
 Change Username
 ================
 
-The Change Username plugin allows you to change the usernames of your WordPress users in an easy and effective way.
+The **Change Username** plugin allows you to change usernames of your WordPress users in an easy & effective way.
 
-We found that existing plugins to change a username did not scale at all when a site had many different users. This plugin does not come with its own settings page but instead simply hooks into the "edit user" form.
+Existing plugins like "Username Changer" do not scale for sites with many users, pulling in all users at once and stuffing them in a single `<select>` element. 
 
-This plugin requires PHP version 5.3 or later.
+This plugin takes a different approach by simply modifying the default WordPress "edit user" page & processing the form over AJAX, resulting in a much leaner & faster experience.
+
+![Change Username](https://i.imgur.com/QgQvSIA.gif?noredirect)
+
+**Please note:** This plugin requires PHP version 5.3 or later.
 
 ### License
 
