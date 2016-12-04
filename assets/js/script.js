@@ -79,12 +79,15 @@
             return;
         }
 
-        message.style.display = 'none';
+        submitButton.value = "Please wait..";
+        submitButton.disabled = true;
         var data = 'current_username='+encodeURIComponent(current_username)+'&new_username='+encodeURIComponent(new_username)+'&_ajax_nonce='+encodeURIComponent(opts.nonce);
         var request = new XMLHttpRequest();
         request.open('POST', opts.ajaxurl + "?action=change_username", true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         request.onload = function() {
+            submitButton.value = "Change";
+            submitButton.disabled = false;
             var errored = true;
             if (request.status >= 200 && request.status < 400 && request.responseText != -1 ) {
                 try {
