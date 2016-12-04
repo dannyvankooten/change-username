@@ -31,7 +31,7 @@ function ajax_handler() {
         'success' => false,
         'new_nonce' => wp_create_nonce( 'change_username' )
     );
-    
+
     // check caps
     if( ! current_user_can( 'edit_users' ) ) {
         $response['message'] = 'You do not have the required capability to do that.';
