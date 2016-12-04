@@ -31,7 +31,7 @@ function ajax_handler() {
         'success' => false,
         'new_nonce' => wp_create_nonce( 'change_username' )
     );
-
+    
     // check caps
     if( ! current_user_can( 'edit_users' ) ) {
         $response['message'] = 'You do not have the required capability to do that.';
@@ -81,9 +81,16 @@ function ajax_handler() {
 /**
  * @param string $old_username
  * @param string $new_username
+ * @return boolean
  */
 function change_username( $old_username, $new_username ) {
     global $wpdb;
+
+    // do nothing if old username does not exist.
+    $user_id = username_exists( $old_username );
+    if( ! $user_id ) {
+        return false;
+    }
 
     // change username
     $q  = $wpdb->prepare( "UPDATE $wpdb->users SET user_login = %s WHERE user_login = %s", $new_username, $old_username );
@@ -96,4 +103,18 @@ function change_username( $old_username, $new_username ) {
     // change display name if needed
     $q  = $wpdb->prepare( "UPDATE $wpdb->users SET display_name = %s WHERE user_login = %s AND display_name = %s", $new_username, $new_username, $old_username );
     $wpdb->query($q);
+
+    // when on multisite, check if old username is in the `site_admins` options array. if so, replace with new username to retain superadmin rights.
+    if( is_multisite() ) {
+        $super_admins = (array) get_site_option( 'site_admins', array( 'admin' ) );
+        $array_key = array_search( $old_username, $super_admins );
+        if( $array_key ) {
+            $super_admins[ $array_key ] = $new_username;
+        }
+
+        update_site_option( 'site_admins' , $super_admins );
+    }
+
+    return true;
+
 }
