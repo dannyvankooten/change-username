@@ -1,6 +1,6 @@
-=== MailChimp for WordPress ===
+=== Change Username ===
 Contributors: Ibericode, DvanKooten, hchouhan, lapzor
-Tags: username
+Tags: username, users, login
 Requires at least: 4.1
 Tested up to: 4.6.1
 Stable tag: 1.0
@@ -15,9 +15,14 @@ Change usernames of your WordPress users easily & effectively.
 
 The Change Username plugin allows you to change the usernames of your WordPress users in an easy and effective way.
 
-We found that existing plugins to change a username did not scale at all when a site had many different users. This plugin does not come with its own settings page but instead simply hooks into the "edit user" form.
+We found that existing plugins to change the username in WordPress did not scale at all for sites with many different users.
+This plugin does not come with its own settings page but instead simply hooks into the "edit user" form.
+It then processes the form over AJAX, resulting in a much leaner & faster experience.
 
-This plugin requires PHP version 5.3 or later.
+**Requirements**
+
+- PHP version 5.3 or later (we recommend PHP 7)
+
 
 == Installation ==
 
@@ -30,7 +35,7 @@ This plugin requires PHP version 5.3 or later.
 
 #### Where is the settings page?
 
-Change Username does not come with its own settings page. You can change the username of any of your users simply by editing that user.
+Change Username does not come with its own settings page. You can change the username of any of your users on the page where you would normally edit that user.
 
 #### Can users change their own username?
 
