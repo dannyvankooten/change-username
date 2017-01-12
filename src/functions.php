@@ -115,6 +115,14 @@ function change_username( $old_username, $new_username ) {
         update_site_option( 'site_admins' , $super_admins );
     }
 
+    /**
+     * Fires right after a username is changed.
+     *
+     * @param string $old_username
+     * @param string $new_username
+     */
+    do_action( 'change_username.username_changed', $old_username, $new_username );
+
     return true;
 
 }
