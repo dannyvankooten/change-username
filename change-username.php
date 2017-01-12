@@ -27,7 +27,7 @@ define( 'CHANGE_USERNAME_VERSION', '1.0' );
 define( 'CHANGE_USERNAME_FILE', __FILE__ );
 
 /** @ignore */
-function _bootstrap_change_username() {
+function _dvk_change_username_bootstrap() {
     // do nothing for public requests
     if( ! is_admin() ) {
         return;
@@ -43,4 +43,4 @@ function _bootstrap_change_username() {
     add_action( 'wp_ajax_change_username', 'change_username\\ajax_handler');
 }
 
-add_action( 'plugins_loaded', '_bootstrap_change_username' );
+add_action( 'plugins_loaded', '_dvk_change_username_bootstrap' );
