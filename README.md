@@ -1,3 +1,7 @@
+This repository moved to https://git.sr.ht/~dvko/wp-change-username on 2022-12-07 :warning:
+
+---
+
 Change Username
 ================
 
