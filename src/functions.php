@@ -16,7 +16,7 @@ function enqueue_assets() {
         return;
     }
 
-    wp_enqueue_script( 'change-username', plugins_url( '/assets/js/script.js', CHANGE_USERNAME_FILE ), array(), CHANGE_USERNAME_VERSION, true );
+    wp_enqueue_script( 'change-username', plugins_url( '/assets/js/script.min.js', CHANGE_USERNAME_FILE ), array(), CHANGE_USERNAME_VERSION, true );
     wp_localize_script( 'change-username', 'change_username', array(
         'nonce' => wp_create_nonce( 'change_username' ),
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
