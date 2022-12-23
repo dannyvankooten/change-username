@@ -3,7 +3,7 @@
 Plugin Name: Change Username
 Description: Allows you to change the username of your WordPress users.
 Author: ibericode
-Version: 1.0
+Version: 1.0.1
 Author URI: https://ibericode.com/
 
 Change Username - a WordPress plugin to change usernames
@@ -23,7 +23,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define( 'CHANGE_USERNAME_VERSION', '1.0' );
+define( 'CHANGE_USERNAME_VERSION', '1.0.1' );
 define( 'CHANGE_USERNAME_FILE', __FILE__ );
 
 /** @ignore */
