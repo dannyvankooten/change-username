@@ -7,7 +7,7 @@ Version: 1.0
 Author URI: https://ibericode.com/
 
 Change Username - a WordPress plugin to change usernames
-Copyright (C) 2016 Danny van Kooten
+Copyright (C) 2016-2023 Danny van Kooten
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,11 +30,6 @@ define( 'CHANGE_USERNAME_FILE', __FILE__ );
 function _dvk_change_username_bootstrap() {
     // do nothing for public requests
     if( ! is_admin() ) {
-        return;
-    }
-
-    // require at least PHP version 5.3
-    if( version_compare( PHP_VERSION, '5.3', '<' ) ) {
         return;
     }
 
