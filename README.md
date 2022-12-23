@@ -11,6 +11,25 @@ This plugin takes a different approach by simply modifying the default WordPress
 
 **Please note:** This plugin requires PHP version 5.3 or later.
 
+
+### Installing
+
+Download the [Change Username](https://wordpress.org/plugins/change-username/) plugin from the WordPress.org plugin repository.
+
+
+### Building from source
+
+1. Ensure you have [TerserJS](https://terser.org) installed.
+2. Clone this repository:
+   ```sh
+   git clone https://git.sr.ht/~dvko/wp-change-username 
+    ```
+3. Build the assets:
+    ```sh
+   make 
+    ```
+   
+
 ### License
 
 GPLv3 or later.
