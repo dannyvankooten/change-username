@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "terser": "^5.34.1"
+  },
+  "scripts": {
+    "build": "make"
   }
 }
