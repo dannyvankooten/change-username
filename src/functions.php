@@ -53,8 +53,8 @@ function ajax_handler() {
     $old_username = trim(strip_tags($_POST['current_username']));
 
     if ($new_username != $old_username) {
-        if (strlen($new_username) <= 2) {
-            $response['message'] = esc_html__('Please enter a username of at least 3 characters.', 'change-username');
+        if (mb_strlen($new_username) < 3 || mb_strlen($new_username) > 60) {
+            $response['message'] = esc_html__('Username must be between 3 and 60 characters long.', 'change-username');
             wp_send_json($response);
             exit;
         }
