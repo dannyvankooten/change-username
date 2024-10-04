@@ -3,7 +3,7 @@ Contributors: Ibericode, DvanKooten
 Tags: username, users, login
 Requires at least: 4.1
 Tested up to: 6.6
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPL-3.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.2
@@ -56,9 +56,12 @@ Please check if your server is running PHP version 5.3 or later. The plugin will
 
 == Changelog ==
 
+
 #### 1.0.2 - Oct 04, 2024
 
 - Show message when new username is less than 3 characters long.
+- Show message when new username is more than 60 characters long.
+- Improved request validation in general.
 - Remove ES6 code from JS file to support a wider range of browsers.
 - Bump required PHP version to 7.2 or higher.
 
