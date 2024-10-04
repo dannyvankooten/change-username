@@ -4,11 +4,11 @@ Tags: username, users, login
 Requires at least: 4.1
 Tested up to: 6.1
 Stable tag: 1.0.1
-License: GPLv3 or later
+License: GPL-3.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Requires PHP: 5.3
+Requires PHP: 7.2
 
-Change usernames of your WordPress users easily & effectively.
+Change usernames of your WordPress users effectively.
 
 == Description ==
 
@@ -24,7 +24,8 @@ Here's what it looks like: [demo.gif](https://i.imgur.com/QgQvSIA.gif?noredirect
 
 **Requirements**
 
-- PHP version 5.3 or later.
+- PHP version 7.2 or higher
+- WordPress version 4.1 or higher
 
 
 == Installation ==

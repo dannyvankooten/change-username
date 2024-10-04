@@ -76,6 +76,7 @@ function ajax_handler() {
     $response['success'] = true;
     $response['message'] = sprintf( 'Username successfully changed to <strong>%s</strong>.', $new_username );
     wp_send_json($response);
+    exit;
 }
 
 /**

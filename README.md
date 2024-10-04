@@ -9,7 +9,10 @@ This plugin takes a different approach by simply modifying the default WordPress
 
 ![Change Username](https://i.imgur.com/QgQvSIA.gif?noredirect)
 
-**Please note:** This plugin requires PHP version 5.3 or later.
+### Requirements
+
+- PHP version 7.2 or higher
+- WordPress version 4.1 or higher
 
 
 ### Installing

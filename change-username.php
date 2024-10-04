@@ -2,12 +2,14 @@
 /*
 Plugin Name: Change Username
 Description: Allows you to change the username of your WordPress users.
-Author: ibericode
 Version: 1.0.1
+Author: ibericode
 Author URI: https://ibericode.com/
+License: GPL-3.0-or-later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Change Username - a WordPress plugin to change usernames
-Copyright (C) 2016-2023 Danny van Kooten
+Copyright (C) 2016 Danny van Kooten
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,7 +35,7 @@ function _dvk_change_username_bootstrap() {
         return;
     }
 
-    require_once __DIR__ . '/src/functions.php';
+    require __DIR__ . '/src/functions.php';
     add_action( 'admin_enqueue_scripts', 'change_username\\enqueue_assets');
     add_action( 'wp_ajax_change_username', 'change_username\\ajax_handler');
 }
