@@ -22,14 +22,13 @@ Download the [Change Username](https://wordpress.org/plugins/change-username/) p
 
 ### Building from source
 
-1. Ensure you have [TerserJS](https://terser.org) installed.
-2. Clone this repository:
+1. Clone this repository:
    ```sh
    git clone https://git.sr.ht/~dvko/wp-change-username 
     ```
-3. Build the assets:
+2. Build the assets:
     ```sh
-   make 
+    npm install && make
     ```
    
 
