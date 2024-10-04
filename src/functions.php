@@ -68,7 +68,7 @@ function ajax_handler() {
         // check if username is not in list of illegal logins
         /** This filter is documented in wp-includes/user.php */
         $illegal_user_logins = array_map('strtolower', (array) apply_filters('illegal_user_logins', array()));
-        if (in_array($new_username, $illegal_user_logins, true)) {
+        if (in_array(strtolower($new_username), $illegal_user_logins, true)) {
             $response['message'] =  esc_html__('Sorry, that username is not allowed.', 'change-username');
             wp_send_json($response);
             exit;
