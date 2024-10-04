@@ -52,6 +52,14 @@ function ajax_handler() {
     $new_username = trim(strip_tags($_POST['new_username']));
     $old_username = trim(strip_tags($_POST['current_username']));
 
+    // old username should be provided by the script
+    // if it doesn't exist, someone is tampering with the request values
+    if (!username_exists($old_username)) {
+        $response['message'] = 'Invalid request.';
+        wp_send_json($response);
+        exit;
+    }
+
     if ($new_username != $old_username) {
         if (mb_strlen($new_username) < 3 || mb_strlen($new_username) > 60) {
             $response['message'] = esc_html__('Username must be between 3 and 60 characters long.', 'change-username');
