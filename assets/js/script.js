@@ -71,12 +71,6 @@
 
         var new_username = form.new_user_login.value;
         var current_username = currentUsernameInput.value;
-
-        // do nothing if username is very short or unchanged
-        if( new_username.length < 2 || new_username === current_username ) {
-            return;
-        }
-
         submitButton.value = "Please wait..";
         submitButton.disabled = true;
         var data = 'current_username='+encodeURIComponent(current_username)+'&new_username='+encodeURIComponent(new_username)+'&_ajax_nonce='+encodeURIComponent(opts.nonce);

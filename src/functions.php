@@ -32,10 +32,11 @@ function ajax_handler() {
         'new_nonce' => wp_create_nonce( 'change_username' )
     );
 
-    // check caps
+    // check capability
     if( ! current_user_can( 'edit_users' ) ) {
-        $response['message'] = 'You do not have the required capability to do that.';
+        $response['message'] = esc_html__('You do not have the required capability to do that.', 'change-username');
         wp_send_json($response);
+        exit;
     }
 
     // validate nonce
@@ -45,36 +46,49 @@ function ajax_handler() {
     if( empty( $_POST['new_username'] ) || $_POST['old_username'] ) {
         $response['message'] = 'Invalid request.';
         wp_send_json($response);
+        exit;
     }
 
-    // validate new username
     $new_username = trim( strip_tags( $_POST['new_username'] ) );
-    if( ! validate_username( $new_username ) ) {
-        $response['message'] = __( 'This username is invalid because it uses illegal characters. Please enter a valid username.' );
-        wp_send_json($response);
-    }
-
-    // check if username is not in list of illegal logins
-    /** This filter is documented in wp-includes/user.php */
-    $illegal_user_logins = array_map( 'strtolower', (array) apply_filters( 'illegal_user_logins', array() ) );
-    if ( in_array( $new_username, $illegal_user_logins ) ) {
-        $response['message'] =  __( 'Sorry, that username is not allowed.' );
-        wp_send_json($response);
-    }
-
-    // check if new username is in use already
-    if( username_exists( $new_username ) ) {
-        $response['message'] = sprintf( '<strong>%s</strong> is already in use.', $new_username );
-        wp_send_json($response);
-    }
-
-    // change the username
     $old_username = trim( strip_tags( $_POST['current_username'] ) );
-    change_username( $old_username, $new_username );
+
+    if ($new_username != $old_username) {
+        if (strlen($new_username) <= 2) {
+            $response['message'] = esc_html__('Please enter a username of at least 3 characters.', 'change-username');
+            wp_send_json($response);
+            exit;
+        }
+
+        if( ! validate_username( $new_username ) ) {
+            $response['message'] = esc_html__('This username is invalid because it uses illegal characters. Please enter a valid username.', 'change-username');
+            wp_send_json($response);
+            exit;
+        }
+
+        // check if username is not in list of illegal logins
+        /** This filter is documented in wp-includes/user.php */
+        $illegal_user_logins = array_map( 'strtolower', (array) apply_filters( 'illegal_user_logins', array() ) );
+        if ( in_array( $new_username, $illegal_user_logins ) ) {
+            $response['message'] =  esc_html__('Sorry, that username is not allowed.', 'change-username');
+            wp_send_json($response);
+            exit;
+        }
+
+        // check if new username is in use already
+        if( username_exists( $new_username ) ) {
+            $response['message'] = sprintf(esc_html__('%1$s is already in use.', 'change-username'), $new_username );
+            wp_send_json($response);
+            exit;
+        }
+
+        // change the username
+        change_username( $old_username, $new_username );
+
+    }
 
     // success response
     $response['success'] = true;
-    $response['message'] = sprintf( 'Username successfully changed to <strong>%s</strong>.', $new_username );
+    $response['message'] = sprintf(esc_html__('Username successfully changed to %1$s.', 'change-username'), $new_username );
     wp_send_json($response);
     exit;
 }
