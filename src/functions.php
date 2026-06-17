@@ -121,8 +121,8 @@ function change_username($old_username, $new_username)
     // when on multisite, check if old username is in the `site_admins` options array. if so, replace with new username to retain superadmin rights.
     if (is_multisite()) {
         $super_admins = (array) get_site_option('site_admins', ['admin']);
-        $array_key = array_search($old_username, $super_admins);
-        if ($array_key) {
+        $array_key = array_search($old_username, $super_admins, true);
+        if ($array_key !== false) {
             $super_admins[$array_key] = $new_username;
             update_site_option('site_admins', $super_admins);
         }

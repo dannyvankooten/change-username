@@ -28,7 +28,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define('CHANGE_USERNAME_VERSION', '1.0.1');
+define('CHANGE_USERNAME_VERSION', '1.0.2');
 define('CHANGE_USERNAME_FILE', __FILE__);
 
 /** @ignore */
