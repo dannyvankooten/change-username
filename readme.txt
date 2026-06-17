@@ -1,12 +1,12 @@
 === Change Username ===
 Contributors: Ibericode, DvanKooten
 Tags: username, users, login
-Requires at least: 4.1
 Tested up to: 7.0
 Stable tag: 1.0.2
 License: GPL-3.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Requires PHP: 7.2
+Requires at least: 6.0
+Requires PHP: 7.4
 
 Change usernames of your WordPress users effectively.
 
@@ -24,8 +24,8 @@ Here's what it looks like: [demo.gif](https://i.imgur.com/QgQvSIA.gif?noredirect
 
 **Requirements**
 
-- PHP version 7.2 or higher
-- WordPress version 4.1 or higher
+- PHP version 7.4 or higher
+- WordPress version 6.0 or higher
 
 
 == Installation ==
