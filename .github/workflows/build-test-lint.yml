@@ -1,0 +1,18 @@
+name: Build, Test and Lint
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup PHP
+        id: setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 'highest'
+      - run: composer install --no-progress
+      - run: php -l *.php src/*.php
+      - run: vendor/bin/phpcs 
+      - run: vendor/bin/phpstan

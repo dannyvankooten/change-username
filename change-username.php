@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: Change Username
 Description: Allows you to change the username of your WordPress users.
@@ -25,19 +26,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define( 'CHANGE_USERNAME_VERSION', '1.0.1' );
-define( 'CHANGE_USERNAME_FILE', __FILE__ );
+define('CHANGE_USERNAME_VERSION', '1.0.1');
+define('CHANGE_USERNAME_FILE', __FILE__);
 
 /** @ignore */
-function _dvk_change_username_bootstrap() {
+function _dvk_change_username_bootstrap()
+{
     // do nothing for public requests
-    if( ! is_admin() ) {
+    if (! is_admin()) {
         return;
     }
 
     require __DIR__ . '/src/functions.php';
-    add_action( 'admin_enqueue_scripts', 'change_username\\enqueue_assets');
-    add_action( 'wp_ajax_change_username', 'change_username\\ajax_handler');
+    add_action('admin_enqueue_scripts', 'change_username\\enqueue_assets');
+    add_action('wp_ajax_change_username', 'change_username\\ajax_handler');
 }
 
-add_action( 'plugins_loaded', '_dvk_change_username_bootstrap' );
+add_action('plugins_loaded', '_dvk_change_username_bootstrap');
