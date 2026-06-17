@@ -20,6 +20,13 @@ if [ ! -e "$PLUGIN_FILE" ]; then
   exit 1
 fi
 
+# First, run some checks
+if [ ! -e "vendor/bin/phpstan" ]; then
+    composer install
+fi;
+vendor/bin/phpcs 
+vendor/bin/phpstan 
+
 # Check if there are uncommitted changes
 if [ -n "$(git status --porcelain)" ]; then
   echo "There are uncommitted changes. Please commit those changes before initiating a release."
@@ -51,13 +58,11 @@ zip -r "$PACKAGE_FILE" "$PLUGIN_SLUG" \
 	-x "$PLUGIN_SLUG/node_modules/*" \
 	-x "$PLUGIN_SLUG/tests/*" \
 	-x "$PLUGIN_SLUG/webpack.config*.js" \
-  -x "$PLUGIN_SLUG/*.json" \
+  	-x "$PLUGIN_SLUG/*.json" \
 	-x "$PLUGIN_SLUG/*.lock" \
 	-x "$PLUGIN_SLUG/phpcs.xml" \
-	-x "$PLUGIN_SLUG/phpunit.xml.dist" \
-	-x "$PLUGIN_SLUG/*.sh" \
-	-x "$PLUGIN_SLUG/assets/src/*"	\
-	-x "$PLUGIN_SLUG/sample-code-snippets/*"
+	-x "$PLUGIN_SLUG/phpstan.neon" \
+	-x "$PLUGIN_SLUG/*.sh" 
 
 cd "$PLUGIN_SLUG"
 
