@@ -2,7 +2,7 @@
 Contributors: Ibericode, DvanKooten
 Tags: username, users, login, user management, multisite
 Tested up to: 7.0
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPL-3.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires at least: 6.0
@@ -79,6 +79,17 @@ Please check if your server is running PHP version 7.4 or higher. The plugin wil
 == Changelog ==
 
 
+#### 1.0.3 - Jun 19, 2026
+
+- Bump required PHP version to 7.4 or higher.
+- Bump required WordPress version to 6.0 or higher.
+- Bump tested WordPress version to 7.0.
+- Fix retaining Multisite super admin rights when the user is first in the super admin list.
+- Improve sanitization of submitted username values.
+- Add PHPCS and PHPStan checks to the release process.
+- Exclude Makefile from plugin release packages.
+
+
 #### 1.0.2 - Oct 04, 2024
 
 - Show message when new username is less than 3 characters long.
@@ -96,3 +107,4 @@ Please check if your server is running PHP version 7.4 or higher. The plugin wil
 #### 1.0 - Dec 2016
 
 Initial release.
+
