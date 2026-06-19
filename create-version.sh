@@ -60,6 +60,7 @@ zip -r "$PACKAGE_FILE" "$PLUGIN_SLUG" \
 	-x "$PLUGIN_SLUG/webpack.config*.js" \
   	-x "$PLUGIN_SLUG/*.json" \
 	-x "$PLUGIN_SLUG/*.lock" \
+	-x "$PLUGIN_SLUG/Makefile" \
 	-x "$PLUGIN_SLUG/phpcs.xml" \
 	-x "$PLUGIN_SLUG/phpstan.neon" \
 	-x "$PLUGIN_SLUG/*.sh" 
