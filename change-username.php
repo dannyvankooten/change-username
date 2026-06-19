@@ -5,7 +5,7 @@ Plugin Name: Change Username
 Description: Allows you to change the username of your WordPress users.
 Version: 1.0.2
 Author: ibericode
-Author URI: https://ibericode.com/
+Author URI: https://www.ibericode.com/
 License: GPL-3.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires at least: 6.0
