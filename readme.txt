@@ -1,6 +1,6 @@
 === Change Username ===
 Contributors: Ibericode, DvanKooten
-Tags: username, users, login
+Tags: username, users, login, user management, multisite
 Tested up to: 7.0
 Stable tag: 1.0.2
 License: GPL-3.0-or-later
@@ -8,25 +8,23 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires at least: 6.0
 Requires PHP: 7.4
 
-Change usernames of your WordPress users effectively.
+Change WordPress usernames from the user edit screen, with validation for existing users, illegal logins, and Multisite admins.
 
 == Description ==
 
 ## Change Username
 
-The Change Username plugin allows you to change the usernames of your WordPress users in an easy and effective way.
+WordPress does not let administrators change usernames by default. Change Username adds that option directly to the existing user edit screen, without a separate settings page.
 
-By default, WordPress itself does not allow usernames to be changed. The other plugins for changing usernames do not scale all that well for sites with a large number of users.
-
-This plugin takes a different approach by simply enhancing the default "edit user" page and then processing the username change over AJAX, resulting in a much faster and user-friendly experience.
+Use it to update a WordPress username while keeping the same user ID, posts, comments, and profile data attached to the account.
 
 ### Features 
 
-- Change username of any user on your WordPress site.
-- Checks if username is taken before changing it.
-- Checks if username is in list of illegal logins.
-- Uses the exact same username requirements as WordPress core.
-- Retain superadmin rights if used to change the username of a Multisite superadmin.
+- Change any WordPress username from the existing user edit screen.
+- Prevent username conflicts by checking whether the new username already exists.
+- Block usernames that are listed as illegal logins.
+- Follow the same username validation rules as WordPress core.
+- Retain superadmin rights when changing the username of a Multisite super admin.
 
 ### Requirements 
 
@@ -45,16 +43,29 @@ He is the founder of [ibericode](https://www.ibericode.com/), the small software
 1. In your WordPress admin panel, go to *Plugins > New Plugin*, search for **Change Username** and click "*Install now*"
 1. Alternatively, download the plugin and upload the contents of `change-username.zip` to your plugins directory, which usually is `/wp-content/plugins/`.
 1. Activate the plugin
+1. Go to *Users*, edit a user, and change the username from the existing user edit screen.
 
 == Frequently Asked Questions ==
 
-#### Where is the settings page?
+#### Where do I change a WordPress username after activation?
 
-Change Username does not come with its own settings page. You can change the username of your users on the page where you would normally edit that user.
+Go to *Users*, open the user you want to edit, and use the username control on the existing user edit screen.
+
+#### Can I change an administrator username?
+
+Yes. Any user with the `edit_users` capability can change usernames, including administrator usernames.
 
 #### Can users change their own username?
 
 Not right now. Only administrators with the `edit_users` capability can change usernames.
+
+#### Does changing a username affect user IDs or posts?
+
+No. The plugin changes the user's login name, but it does not change the user ID. Existing posts, pages, comments, and user metadata stay assigned to the same user account.
+
+#### Does this work on WordPress Multisite?
+
+Yes. When changing the username of a Multisite super admin, the plugin keeps that user in the super admin list.
 
 #### I've activated the plugin but nothing happens.
 
@@ -63,7 +74,7 @@ Please check if your server is running PHP version 7.4 or higher. The plugin wil
 
 == Screenshots ==
 
-1. The toggle as shown on the "Edit user" page.
+1. Change a WordPress username from the default user edit screen.
 
 == Changelog ==
 
@@ -85,4 +96,3 @@ Please check if your server is running PHP version 7.4 or higher. The plugin wil
 #### 1.0 - Dec 2016
 
 Initial release.
-
