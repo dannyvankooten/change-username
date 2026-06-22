@@ -1,4 +1,4 @@
-Change Username
+Change WordPress Usernames
 ================
 
 The **Change Username** plugin allows you to change usernames of your WordPress users in an easy & effective way.
